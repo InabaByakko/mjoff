@@ -119,6 +119,12 @@ class UserController < ApplicationController
 		end
 		
 		@user = TwitterUser.find_by(:screen_name =>session[:screen_name], :open_time => Application.open_time)
+		# 前回までに参加したか？ (スクリーンネームで判断するので変えた人は別人判定されてしまう)
+		if Application.open_time > 1
+			@is_joined_before = !(TwitterUser.where("screen_name = ? and open_time < ?", session[:screen_name], Application.open_time).empty?)
+		else
+			@is_joined_before = false
+		end
 		
 		# セッションをクリア
 		session[:screen_name] = ""
