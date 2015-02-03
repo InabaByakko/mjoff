@@ -1,0 +1,123 @@
+<%#
+# To change this license header, choose License Headers in Project Properties.
+# To change this template file, choose Tools | Templates
+# and open the template in the editor.
+%>
+<%= javascript_include_tag "jquery.dd.min.js" %>
+<% if @input_error %><div class="error"><%= @input_error %></div><% end %>
+
+<%= form_tag :action => "create" do |f| %>
+<table>
+  <tr>
+    <td></td>
+    <td>
+      <div class="i_panel">
+        <div class="i_user">
+          
+           <select id="user_round_results_2_user_id" name="user_round_results[2][user_id]" >
+            <% @users.to_a.each do |u| %>
+             <option value="<%= u.id %>" data-image="<%= u.icon_src.gsub(/_normal/, "_mini") %>"><%= u.username %></option>  
+            <% end %>
+           </select>
+        </div>
+        <%= fields_for @rounds[2], @rounds[2], :index => 2 do |r| %>
+        <div class="i_score">点：<%= r.number_field :score, :class => "i_i_score" %>00</div>
+        <div class="i_yakuman">役満：<%= r.number_field :yakuman, :class => "i_i_yakuman" %>回</div>
+        <% end %>
+      </div>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      <div class="i_panel">
+        <div class="i_user">
+          
+           <select id="user_round_results_3_user_id" name="user_round_results[3][user_id]">
+            <% @users.to_a.each do |u| %>
+             <option value="<%= u.id %>" data-image="<%= u.icon_src.gsub(/_normal/, "_mini") %>"><%= u.username %></option>  
+            <% end %>
+           </select>
+        </div>
+        <%= fields_for @rounds[3], @rounds[3], :index => 3 do |r| %>
+        <div class="i_score">点：<%= r.number_field :score, :class => "i_i_score" %>00</div>
+        <div class="i_yakuman">役満：<%= r.number_field :yakuman, :class => "i_i_yakuman" %>回</div>
+           <% end %>
+      </div>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td rowspan="2" class="i_table i_side_t">北</td>
+          <td class="i_table i_top_t">西</td>
+          <td rowspan="2" class="i_table i_side_t">南</td>
+        </tr>
+        <tr>
+          <td class="i_table i_top_t">東</td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <div class="i_panel">
+        <div class="i_user">
+          
+           <select id="user_round_results_1_user_id" name="user_round_results[1][user_id]">
+            <% @users.to_a.each do |u| %>
+             <option value="<%= u.id %>" data-image="<%= u.icon_src.gsub(/_normal/, "_mini") %>"><%= u.username %></option>  
+            <% end %>
+           </select>
+        </div>
+        <%= fields_for @rounds[1], @rounds[1], :index => 1 do |r| %>
+        <div class="i_score">点：<%= r.number_field :score, :class => "i_i_score" %>00</div>
+        <div class="i_yakuman">役満：<%= r.number_field :yakuman, :class => "i_i_yakuman" %>回</div>
+           <% end %>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <div class="i_panel">
+        <div class="i_user">
+          
+           <select id="user_round_results_0_user_id" name="user_round_results[0][user_id]">
+            <% @users.to_a.each do |u| %>
+             <option value="<%= u.id %>" data-image="<%= u.icon_src.gsub(/_normal/, "_mini") %>"><%= u.username %></option>  
+            <% end %>
+           </select>
+        </div>
+        <%= fields_for @rounds[0], @rounds[0], :index => 0 do |r| %>
+        <div class="i_score">点：<%= r.number_field :score, :class => "i_i_score" %>00</div>
+        <div class="i_yakuman">役満：<%= r.number_field :yakuman, :class => "i_i_yakuman" %>回</div>
+           <% end %>
+      </div>
+    </td>
+    <td></td>
+  </tr>
+</table>
+<%= submit_tag "送信", :class => "i_submit button"%>
+<%= link_to "戻る", {:action => "index"} , :class => "i_submit button" %>
+<% end %>
+
+<div class="i_notice">
+  ※注意事項<br />
+  <ul>
+    <li>順位点（ウマ）を支払う前の点数を入力してください（保存時に自動的に計算されます）。</li>
+    <li>得点は100点単位で入力してください。（保存時に100倍されます）</li>
+    <li>席順は同点だった場合の順位計算に影響します。正確に入力してください。</li>
+  </ul>
+</div>
+
+ <script language="javascript">
+$(document).ready(function(e) {
+try {
+$("#user_round_results_0_user_id").msDropDown();
+$("#user_round_results_1_user_id").msDropDown();
+$("#user_round_results_2_user_id").msDropDown();
+$("#user_round_results_3_user_id").msDropDown();
+} catch(e) {
+//alert(e.message);
+window.location.reload();
+}
+});
+</script>

@@ -1,0 +1,15 @@
+<%#
+# To change this license header, choose License Headers in Project Properties.
+# To change this template file, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<%= form_tag :action => "edit", :screen_name => @user.screen_name do |f| %>
+<h2 class="underline"><img src="<%= @user.icon_src.gsub(/_normal/, "_bigger") %> "> <%= @user.username %>(@<%= @user.screen_name %>)</h2>
+
+<div>あなたは学生ですか？(参加料金の計算に必要です。)<br />
+<%= radio_button_tag 'is_student',  1, {} %>はい<br />
+<%= radio_button_tag 'is_student',  0, :checked => true %>いいえ</div>
+<%= hidden_field_tag 'from_register', @from_register %>
+<%= submit_tag "登録" %>
+<% end %>

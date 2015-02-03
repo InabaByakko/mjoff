@@ -1,0 +1,34 @@
+## YAML Template.
+---
+development:
+    open_time: 1
+    is_open: true
+    show_rounds: 3
+    general_charge_per_hour: 220
+    student_charge_per_hour: 150
+    standard_score: 30000
+    start_score: 25000
+    fourth_to_first_score: 10000
+    third_to_second_score: 5000
+
+test:
+    open_time: 1
+    is_open: true
+    show_rounds: 3
+    general_charge_per_hour: 220
+    student_charge_per_hour: 150
+    standard_score: 30000
+    start_score: 25000
+    fourth_to_first_score: 10000
+    third_to_second_score: 5000
+
+production:
+    open_time: 3
+    is_open: false
+    show_rounds: 3
+    general_charge_per_hour: 220
+    student_charge_per_hour: 150
+    standard_score: 30000
+    start_score: 25000
+    fourth_to_first_score: 10000
+    third_to_second_score: 5000

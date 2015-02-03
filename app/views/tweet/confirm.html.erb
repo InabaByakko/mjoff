@@ -1,0 +1,15 @@
+<%#
+# To change this license header, choose License Headers in Project Properties.
+# To change this template file, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<h2>以下の内容でツイートしてよろしいですか？</h2>
+<div class="tweet_container">
+  <%= image_tag @user.icon_src, :class => "twitter_icon" %>
+  <div class="tweet_message"><%= @tweet_message %></div>
+  <%= form_tag :action => "update" do |f| %>
+  <%= hidden_field_tag "tweet_message", @tweet_message %>
+  <%= submit_tag "ツイートする", :class => "button" %><%= link_to "キャンセル", {:controller => "round", :action => "index"}, :class => "button" %>
+  <% end %>
+</div>

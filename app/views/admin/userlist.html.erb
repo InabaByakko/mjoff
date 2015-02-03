@@ -1,0 +1,24 @@
+<style>
+  label {
+    background-color: lavender;
+    display: block;
+    height: 100%;
+  }
+</style>
+
+<%= form_tag :action => "enter", :method => "post" do |f| %>
+<table>
+  <% @users.each do |u| %>
+  <tr>
+      <td><label for="enter_update_<%=u.id%>"><%= check_box_tag "enter_update[#{u.id}]" %><%= image_tag u.icon_src %></td></label>
+      <td><label for="enter_update_<%=u.id%>"><%= u.username %></label></td>
+      <td><label for="enter_update_<%=u.id%>"><%= u.entry_time.strftime("%H:%M:%S") if u.entry_time.is_a?(Time) %></label></td>
+  <tr/>
+  <% end %>
+</table>
+<div>
+<%= check_box_tag("meeting_enter_update") %>+ "入店時間更新: " + <%= @meeting.enter_time.strftime("%H:%M:%S") if @meeting.enter_time.is_a?(Time) %>
+</div>
+<%= submit_tag "Update" %>
+
+<% end %>

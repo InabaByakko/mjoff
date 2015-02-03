@@ -1,0 +1,183 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+.button {
+	display: inline-block;
+	width: 150px;
+	height: 40px;
+	text-align: center;
+	text-decoration: none;
+	line-height: 40px;
+	outline: none;
+        margin: 5px;
+        font-size: inherit;
+        font-family: inherit;
+}
+.button::before,
+.button::after {
+	position: absolute;
+	z-index: -1;
+	display: block;
+	content: '';
+}
+.button,
+.button::before,
+.button::after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+
+.button {
+	border: 1px solid #15aeec;
+	background-color: #49c0f0;
+	background-image: -webkit-linear-gradient(top, #49c0f0, #2cafe3);
+	background-image: linear-gradient(to bottom, #49c0f0, #2cafe3);
+	border-radius: 4px;
+	color: #fff;
+	line-height: 50px;
+	-webkit-transition: none;
+	transition: none;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+.button:hover {
+	border:1px solid #1090c3;
+	background-color: #1ab0ec;
+	background-image: -webkit-linear-gradient(top, #1ab0ec, #1a92c2);
+	background-image: linear-gradient(to bottom, #1ab0ec, #1a92c2);
+}
+.button:active {
+	background: #1a92c2;
+	box-shadow: inset 0 3px 5px rgba(0, 0, 0, .2);
+	color: #1679a1;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, .5);
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+    padding: 0px;
+}
+
+.disabled, .disabled:hover, .disabled:active {
+    background: lightgray;
+    border-color: gray;
+}
+
+html,body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+body {
+	background-color: #00622B;
+        background: #00622b; /* Old browsers */
+        /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwNjIyYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+        background: -moz-linear-gradient(top,  #00622b 0%, #ffffff 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00622b), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  #00622b 0%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  #00622b 0%,#ffffff 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  #00622b 0%,#ffffff 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  #00622b 0%,#ffffff 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00622b', endColorstr='#ffffff',GradientType=0 ); /* IE6-8 */
+        background-repeat: no-repeat;
+        background-size:2100px 50px;
+        color: #2E2F30;
+        font-family:'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, Osaka, "ＭＳ　Ｐゴシック" sans-serif;
+}
+.wrapper {
+	margin: 0 auto;
+	padding: 60px 10px 10px 10px;
+	height: 100%;
+	min-height: 100%;
+	box-sizing:border-box;
+
+}
+.container {
+    background-color: #fcf9f4;
+    border: thin dotted #e5cd75;
+    margin: 0px;
+    padding: 20px;
+    height: 100%;
+    min-height: 100%;
+	box-sizing: inherit;
+	background-image: url('/images/mjoff_background.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.gradient01 {
+  background: -moz-linear-gradient(top, #fad7b1, #f49b3d 50%, #ef7d01 51%,#f07c01);
+  background: -webkit-gradient(linear, left top, left bottom, from(#fad7b1), color-stop(50%, #f49b3d), color-stop(51%, #ef7d01),to(#f07c01));
+  text-shadow: -1px -1px #cc6600;
+  color: white;
+  padding: 15px;
+}
+.underline {
+  border-bottom: medium double #cc6600;
+}
+
+.i_panel {
+    text-align: center;
+    background-color: #FEFEFE;
+    border: thin double #f49b3d;
+    padding: 10px;
+}
+
+.i_table {
+    background-color: #00622b;
+    color: white;
+    font-weight: bolder;
+    font-size: larger;
+    vertical-align: middle;
+    text-align: center;
+}
+.i_table.p {
+    line-height: 100%;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.i_side_t {
+    height: 100px;
+    width: 150px;
+}
+
+.i_top_t {
+    height: 50px;
+    width: 400px;
+}
+.i_user select {
+    width: 280px;
+}
+.i_i_score {
+    text-align: right;
+    width: 4em;
+}
+.i_i_yakuman {
+    text-align: right;
+    width: 2em;
+}
+
+.i_submit {
+    height:40px;
+    width: 100px;
+    font-size: large;
+}

@@ -1,0 +1,22 @@
+<%#
+# To change this license header, choose License Headers in Project Properties.
+# To change this template file, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<div class="box">
+  <h1 class="gradient01">第<%= Application.open_time %>回 全自動卓DE麻雀オフ へのご参加ありがとうございます。 </h1>
+  <div>
+  	<p>今回の開催より、進行を円滑に進めるため、点数管理システムの開発を行いました。</p>
+  	<p>このシステムでできることは、以下の通りです。</p>
+  	<ol>
+  		<li>これまで紙で記録していた点数集計をＷｅｂ上で管理できる</li>
+  		<li>順位点（ウマ）やプラスマイナスの計算は必要なく、オーラスを終えた時点での点数を入力すればＯＫ</li>
+  		<li>直近<%= Application.show_rounds %>回の結果のみ表示され、最終結果発表が楽しみになる</li>
+  		<li>最終得点や順位をTwitterにつぶやける</li>
+  		</ol>
+  	<p>このシステムの利用には、Twitterアカウントの認証が必要になります。以下のリンクをクリックして、認証してください。</p>
+  </div>
+  <div><%= link_to 'Twitter認証してエントリー！', "/user/auth" %></div>
+
+</div>

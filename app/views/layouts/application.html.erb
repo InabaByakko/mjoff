@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>第<%= Application.open_time  %>回 全自動卓DE麻雀オフ</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "mjoff", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="wrapper">
+  <div class="container">
+<% if @has_error %>
+    <div class="error"><%= @error_mes %></div>
+<% else %>
+  <%= yield %>
+<% end %>
+</div>
+
+</div></body>
+</html>

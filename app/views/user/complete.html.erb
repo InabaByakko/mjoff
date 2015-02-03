@@ -1,0 +1,12 @@
+<%#
+# To change this license header, choose License Headers in Project Properties.
+# To change this template file, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<h1 class="gradient01">エントリーありがとうございます。</h1>
+<div>
+  <img src="<%= @user.icon_src %>">
+<%= @user.username %>さん (<a href="https://twitter.com/<%= @user.screen_name %>" target="_brank">@<%= @user.screen_name %></a>) さんのエントリーが完了しました。
+</div>
+<div><%= link_to "エントリー画面へ戻る", :action => "entry" %></div>

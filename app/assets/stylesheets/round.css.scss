@@ -1,0 +1,40 @@
+// Place all the styles related to the round controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.player_container {
+    position: relative;
+    background-color: #E6DCE0;
+    width: 200px;
+}
+
+.player_name {
+    border-bottom: dashed 2px #ff6666;
+   /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YzZjFmMiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjM2JSIgc3RvcC1jb2xvcj0iI2YzZjFmMiIgc3RvcC1vcGFjaXR5PSIwLjgzIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmM2YxZjIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  rgba(243,241,242,0) 0%, rgba(243,241,242,0.83) 36%, rgba(243,241,242,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(243,241,242,0)), color-stop(36%,rgba(243,241,242,0.83)), color-stop(100%,rgba(243,241,242,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(243,241,242,0) 0%,rgba(243,241,242,0.83) 36%,rgba(243,241,242,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(243,241,242,0) 0%,rgba(243,241,242,0.83) 36%,rgba(243,241,242,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(243,241,242,0) 0%,rgba(243,241,242,0.83) 36%,rgba(243,241,242,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(243,241,242,0) 0%,rgba(243,241,242,0.83) 36%,rgba(243,241,242,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00f3f1f2', endColorstr='#f3f1f2',GradientType=0 ); /* IE6-8 */
+
+
+}
+
+.player_rank {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+.player_tweet {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.i_panel input {
+    font-size: large;
+}
