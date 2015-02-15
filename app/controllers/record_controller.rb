@@ -1,5 +1,6 @@
 class RecordController < ApplicationController
   def user
+		@users = TwitterUser.to_a
 		@rounds = []
 		uids = TwitterUser.select(:id).where(screen_name:  params[:screen_name]).to_a
 		
