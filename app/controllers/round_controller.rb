@@ -20,7 +20,7 @@ class RoundController < ApplicationController
 		end
 		
 		# 直近の指定した回数分の半荘IDを取得
-		round_id_list = UserRoundResults.get_round_id_list(Application.open_time, Application.show_rounds)
+		round_id_list = UserRoundResults.get_round_id_list(Application.open_time, Application.show_rounds).pluck(:round_id)
 		
 		# 半荘結果取得
 		@rounds = []

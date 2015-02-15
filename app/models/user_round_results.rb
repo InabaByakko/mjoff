@@ -13,7 +13,7 @@ class UserRoundResults < ActiveRecord::Base
 			round = round.limit(limit)
 		end
 		return [] if round.select("round_id") == nil
-		return round.select("round_id").pluck(:round_id)
+		return round.select("round_id")
 	end
 	
 	#####################################################
