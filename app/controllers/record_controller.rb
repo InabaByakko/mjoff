@@ -1,7 +1,9 @@
 class RecordController < ApplicationController
   def user
+		uid = TwitterUser.select(:id).where(screen_name:  params[:screen_name])
+		
 		# 指定したユーザーの半荘IDを取得
-		round_id_list =UserRoundResults.where(screen_name: params[:screen_name]).select(:round_id)
+		round_id_list =UserRoundResults.where(user_id: uid).select(:round_id)
 		
 		@rounds = []
 		round_id_list.each do |rid|
