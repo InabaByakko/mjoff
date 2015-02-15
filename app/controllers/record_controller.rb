@@ -7,6 +7,7 @@ class RecordController < ApplicationController
 		round_id_list =UserRoundResults.where("user_id IN (?)", uids).select(:round_id)
 		
 		round_id_list.each do |rid|
+			p rid
 			@rounds.push( UserRoundResults.where(:round_id => rid).order("seat ASC").to_a)
 		end
   end
