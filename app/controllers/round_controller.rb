@@ -103,8 +103,4 @@ class RoundController < ApplicationController
 		redirect_to :action => "index"
 	end
 	
-	def error(message)
-		@has_error = true
-		@error_mes = message
-	end
 end
