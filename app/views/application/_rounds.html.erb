@@ -2,7 +2,7 @@
 <% show_time = false if show_time.nil? %>
 <table border="1">
   <tr>
-    <th>ID</th>
+    <th></th>
     <th>東</th>
     <th>南</th>
     <th>西</th>
@@ -11,7 +11,13 @@
   </tr>
   <% @rounds.each do |round| %>
   <tr>
-    <td><%= round[0].round_id %></td>
+    <td>
+      <% if tweet_user.nil? %>
+<%= link_to "第" + round[0].open_time.to_s + "回 " + round[0].round_id.to_s + "半荘目", controller: :round, action: :show, open_time: round[0].open_time, round_id: round[0].round_id %>
+      <% else %>
+      <%= link_to "第" + round[0].open_time.to_s + "回 " + round[0].round_id.to_s + "半荘目", controller: :round, action: :show, open_time: round[0].open_time, round_id: round[0].round_id, tweet_user: tweet_user %>
+      <% end %>
+    </td>
     <% round.each do |r| %>
     <% user = @users.find{|u| u.id == r.user_id } %>
     <td class="player_container">

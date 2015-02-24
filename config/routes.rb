@@ -35,6 +35,7 @@ Mjoff::Application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 	resources :round
+	get "round/:open_time/:round_id" => "round#show"
 
   # Example resource route with options:
   #   resources :products do
