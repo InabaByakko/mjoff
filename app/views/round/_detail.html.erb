@@ -1,0 +1,36 @@
+<table>
+  <tr>
+    <td></td>
+    <td>
+      <%= render "panel", users: @users, round: @rounds[2], index: 2  %>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      <%= render "panel", users: @users, round: @rounds[3], index: 3  %>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td rowspan="2" class="i_table i_side_t">北</td>
+          <td class="i_table i_top_t">西</td>
+          <td rowspan="2" class="i_table i_side_t">南</td>
+        </tr>
+        <tr>
+          <td class="i_table i_top_t">東</td>
+        </tr>
+      </table>
+    </td>
+    <td>
+     <%= render "panel", users: @users, round: @rounds[1], index: 1  %>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <%= render "panel", users: @users, round: @rounds[0], index: 0  %>
+    </td>
+    <td></td>
+  </tr>
+</table>

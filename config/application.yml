@@ -1,7 +1,7 @@
 ## YAML Template.
 ---
 development:
-    open_time: 2
+    open_time: 1
     is_open: true
     show_rounds: 3
     general_charge_per_hour: 220

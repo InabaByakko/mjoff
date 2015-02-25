@@ -1,0 +1,14 @@
+<div class="i_panel">
+  <div class="i_user">
+
+    <select id="user_round_results_<%= index %>_user_id" name="user_round_results[<%= index %>][user_id]" >
+      <% users.to_a.each do |u| %>
+        <option value="<%= u.id %>" data-image="<%= u.icon_src.gsub(/_normal/, "_mini") %>"><%= u.username %></option>  
+      <% end %>
+    </select>
+  </div>
+  <%= fields_for round, round, :index => index do |r| %>
+    <div class="i_score">点：<%= r.number_field :score, :class => "i_i_score" %>00</div>
+    <div class="i_yakuman">役満：<%= r.number_field :yakuman, :class => "i_i_yakuman" %>回</div>
+  <% end %>
+</div>
