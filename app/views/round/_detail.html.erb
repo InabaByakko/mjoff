@@ -1,14 +1,15 @@
+<% input = false if input.nil? %>
 <table>
   <tr>
     <td></td>
     <td>
-      <%= render "panel", users: @users, round: @rounds[2], index: 2  %>
+      <%= render "panel", users: users, round: rounds[2], index: 2, input: input %>
     </td>
     <td></td>
   </tr>
   <tr>
     <td>
-      <%= render "panel", users: @users, round: @rounds[3], index: 3  %>
+      <%= render "panel", users: users, round: rounds[3], index: 3, input: input %>
     </td>
     <td>
       <table>
@@ -23,13 +24,13 @@
       </table>
     </td>
     <td>
-     <%= render "panel", users: @users, round: @rounds[1], index: 1  %>
+     <%= render "panel", users: users, round: rounds[1], index: 1, input: input %>
     </td>
   </tr>
   <tr>
     <td></td>
     <td>
-      <%= render "panel", users: @users, round: @rounds[0], index: 0  %>
+      <%= render "panel", users: users, round: rounds[0], index: 0, input: input %>
     </td>
     <td></td>
   </tr>

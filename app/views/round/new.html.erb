@@ -7,7 +7,7 @@
 <% if @input_error %><div class="error"><%= @input_error %></div><% end %>
 
 <%= form_tag :action => "create" do |f| %>
-<%= render "detail" %>
+<%= render "detail", users: @users, rounds: @rounds, input: true %>
 <%= submit_tag "送信", :class => "i_submit button"%>
 <%= link_to "戻る", {:action => "index"} , :class => "i_submit button" %>
 <% end %>
