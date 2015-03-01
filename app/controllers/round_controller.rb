@@ -30,11 +30,6 @@ class RoundController < ApplicationController
 		end
 	end
 	
-	def show
-		@users = TwitterUser.where(:open_time => params[:open_time]).to_a
-		@rounds = UserRoundResults.where("open_time = ? AND round_id = ?", params[:open_time], params[:round_id]).order("seat ASC")
-	end
-	
 	def new		
 		# 参加人数チェック
 		@users = TwitterUser.where(:open_time => Application.open_time).to_a
