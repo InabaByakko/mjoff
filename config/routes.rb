@@ -1,8 +1,4 @@
 Mjoff::Application.routes.draw do
-  get "ranking/index"
-  get "ranking/time"
-  get "record/user"
-  get "records/user"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -31,14 +27,19 @@ Mjoff::Application.routes.draw do
 	post 'admin/enter' => 'admin#enter'
 	
 	get 'record/:screen_name' => 'record#user'
+	get 'record/:screen_name/:open_time' => 'record#user'
+	get "record/detail/:open_time/:round_id" => "record#show"
 
+	get 'ranking' => "ranking#index"
+	get 'ranking/:open_time' => redirect("/ranking/total/%{open_time}")
+	get 'ranking/total/:open_time' => 'ranking#total'
+	
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 	get "round" => "round#index"
 	get "round/new" => "round#new"
 	post "round" => "round#create"
 	delete "round/:id" => "round#destroy"
-	get "round/detail/:open_time/:round_id" => "round#show"
 
   # Example resource route with options:
   #   resources :products do

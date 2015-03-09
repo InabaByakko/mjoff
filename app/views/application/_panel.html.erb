@@ -1,4 +1,5 @@
-<div class="i_panel">
+<div class="i_panel ">
+  <% if input == true %>
   <div class="i_user">
 
     <select id="user_round_results_<%= index %>_user_id" name="user_round_results[<%= index %>][user_id]" >
@@ -11,4 +12,14 @@
     <div class="i_score">点：<%= r.number_field :score, :class => "i_i_score" %>00</div>
     <div class="i_yakuman">役満：<%= r.number_field :yakuman, :class => "i_i_yakuman" %>回</div>
   <% end %>
+    <% else %>
+    <% user = users.find{|u| u.id == round[:user_id]} %>
+    <div class="d_user"><%= image_tag user.icon_src %> <%= user.username %></div>
+    <div class="d_score"><%= round.score %>点</div>
+    <div class="d_yakuman">役満：<%= round.yakuman %>回</div>
+    <div class="player_rank"><%= image_tag "rank#{round.rank}.png" %></div>
+    <% if !params[:tweet_user].nil? and params[:tweet_user].casecmp(user.screen_name) == 0 %>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= request.url.gsub(/\?.*$/, "") %>" data-text="第<%= round.open_time %>回麻雀オフの <%= round.round_id %>半荘目 において、@<%= user.screen_name %> は、<%= round.score %>点で <%= round.rank %>位でした。 " data-lang="ja" data-size="large" data-count="none" data-hashtags="marjong_off">ツイート</a>
+<% end %>
+    <% end %>
 </div>

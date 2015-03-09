@@ -1,9 +1,9 @@
 ## YAML Template.
 ---
 development:
-    open_time: 1
+    open_time: 2
     is_open: true
-    show_rounds: 3
+    show_rounds: 5
     general_charge_per_hour: 220
     student_charge_per_hour: 150
     standard_score: 30000
@@ -23,7 +23,7 @@ test:
     third_to_second_score: 5000
 
 production:
-    open_time: 3
+    open_time: 4
     is_open: false
     show_rounds: 3
     general_charge_per_hour: 220

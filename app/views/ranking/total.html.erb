@@ -1,0 +1,34 @@
+<h1 class="gradient01">第<%= params[:open_time] %>回麻雀オフ　獲得スコアランキング</h1>
+<table border=1>
+  <% @rank.each_with_index do |user_score, rank| %>
+  <% user = @users.find{|u| u.id == user_score[0] } %>
+  <tr>
+    <td>
+    <% if rank < 3 %>
+      <%= image_tag "rank#{rank + 1}.png" %>
+    <% else %>
+      <%= rank + 1  %>位
+    <% end %>
+    </td>
+    <td class="player_container" style="width: 320px;">
+      <div class="player_name">
+        <%= link_to raw("<img src=" + user.icon_src + " alt=" + user.screen_name + "><strong>"+ h(user.username) + "</strong>"), {controller: :record, action: :user, screen_name: user.screen_name, open_time: params[:open_time]} %>
+      </div>
+    </td>
+    <td><%= user_score[1] %></td>
+    <td><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= request.url.gsub(/\?.*$/, "") %>" data-text="第<%= params[:open_time] %>回麻雀オフの @<%= user.screen_name %> の総合成績は <% if user_score[1] > 0 %>+<% end %><%= user_score[1] %> で <%= rank + 1 %>位でした。 " data-lang="ja" data-size="large" data-count="none" data-hashtags="marjong_off">ツイート</a>
+</td>
+  </tr>
+  <% end %>
+</table>
+
+ <script language="javascript">
+$(document).ready(function(e) {
+try {
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+} catch(e) {
+//alert(e.message);
+window.location.reload();
+}
+});
+</script>

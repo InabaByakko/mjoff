@@ -22,3 +22,7 @@ config/twitter.yml
 
 nbproject/
 nohup.out
+.buildpath
+.project
+.settings/
+

@@ -10,10 +10,25 @@ class RecordController < ApplicationController
 		uids = TwitterUser.select(:id).where(screen_name:  params[:screen_name]).to_a
 		
 		# 指定したユーザーの半荘IDを取得
-		round_id_list =UserRoundResults.where("user_id IN (?)", uids).select(:round_id)
+		round_id_list = UserRoundResults.select(:open_time, :round_id).where("user_id IN (?)", uids)
+		if params[:open_time].nil?
+			if Application.is_open
+				round_id_list = round_id_list.where("open_time <> ?", Application.open_time)
+			end
+		else
+			if Application.is_open and params[:open_time].to_i == Application.open_time
+				error "開催期間中は当日の過去半荘データはみられません。"
+			else
+				round_id_list = round_id_list.where(open_time:  params[:open_time])
+			end
+		end
 		
-		round_id_list.each do |rid|
-			@rounds.push( UserRoundResults.where(:round_id => rid.round_id).order("seat ASC").to_a)
+		round_id_list.each do |r|
+			@rounds.push( UserRoundResults.where(open_time: r.open_time).where(round_id: r.round_id).order("seat ASC").to_a)
+		end
+		
+		unless params[:open_time].nil?
+			render action: 'user_time'
 		end
   end
 	

@@ -14,8 +14,9 @@
 
 .button {
 	display: inline-block;
-	width: 150px;
 	height: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
 	text-align: center;
 	text-decoration: none;
 	line-height: 40px;
@@ -66,8 +67,13 @@
 	text-shadow: 0 1px 1px rgba(255, 255, 255, .5);
 }
 
+.b_thin {
+   padding: 0px; 
+}
+
 .icon {
     width: 32px;
+    min-width: 0px;
     height: 32px;
     padding: 0px;
 }
@@ -183,5 +189,6 @@ body {
 .i_submit {
     height:40px;
     width: 100px;
+    min-width: 0px;
     font-size: large;
 }
