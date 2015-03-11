@@ -46,3 +46,45 @@ four:
     yakuman: 0
     rank: 0
     plus_minus: 0
+    
+# 同着がいる場合
+# 1/2位が同着
+samerank1_1:
+    user_id: 1
+    open_time: 1
+    round_id: 1
+    seat: 0
+    score: 15000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
+    
+samerank1_2:
+    user_id: 2
+    open_time: 1
+    round_id: 1
+    seat: 0
+    score: 32000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
+    
+samerank1_3:
+    user_id: 3
+    open_time: 1
+    round_id: 1
+    seat: 0
+    score: 32000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
+    
+samerank1_4:
+    user_id: 4
+    open_time: 1
+    round_id: 1
+    seat: 0
+    score: 21000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0

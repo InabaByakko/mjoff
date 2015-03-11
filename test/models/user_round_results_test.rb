@@ -6,9 +6,9 @@ class UserRoundResultsTest < ActiveSupport::TestCase
   #   assert true
   # end
 	
-	def get_test_data
+	def get_test_data(offset = 0)
 		rounds = UserRoundResults.all
-		array = [rounds[0],rounds[1],rounds[2],rounds[3]]
+		array = [rounds[0 + offset],rounds[1 + offset],rounds[2 + offset],rounds[3 + offset]]
 		return array
 	end
 	
@@ -47,5 +47,18 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		assert_equal 0, @rounds[1].plus_minus
 		assert_equal 31, @rounds[2].plus_minus
 		assert_equal -10, @rounds[3].plus_minus
+	end
+	
+	# 想定結果：1位と2位がそれぞれ馬を折半し7500点ずつ加算
+	test "同着ウマ支払い（1位と2位が同じ）" do
+		@rounds = get_test_data(4)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 5000, @rounds[0].score
+		assert_equal 39500, @rounds[1].score
+		assert_equal 39500, @rounds[2].score
+		assert_equal 16000, @rounds[3].score
 	end
 end
