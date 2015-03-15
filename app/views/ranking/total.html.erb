@@ -1,4 +1,4 @@
-<h1 class="gradient01">第<%= params[:open_time] %>回麻雀オフ　獲得スコアランキング</h1>
+﻿<h1 class="gradient01">第<%= params[:open_time] %>回麻雀オフ　獲得スコアランキング</h1>
 <table border=1>
   <% @rank.each_with_index do |user_score, rank| %>
   <% user = @users.find{|u| u.id == user_score[0] } %>
@@ -22,13 +22,10 @@
   <% end %>
 </table>
 
- <script language="javascript">
-$(document).ready(function(e) {
-try {
-!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-} catch(e) {
-//alert(e.message);
-window.location.reload();
-}
-});
-</script>
+ <script src="/javascripts/twtrwids.js"></script>
+ <script type="text/javascript">
+   $(window).unload(function(){
+     elm = document.getElementById('twitter-wjs');
+     document.removeChild(elm);
+   });
+ </script>
