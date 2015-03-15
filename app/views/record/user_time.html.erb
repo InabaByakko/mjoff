@@ -1,0 +1,10 @@
+<% unless @has_error %>
+<h2 class="gradient01"><%= image_tag @display_user.icon_src  %><%= @display_user.username  %><span style="font-size: 0.5em;">(@<%= @display_user.screen_name %>)</span>さんの 第<%= params[:open_time] %>回 の戦績 </h2>
+<div>第<%= params[:open_time] %>回 麻雀オフの戦績を表示しています。</div> <%= @error_mes %>
+<div><%= link_to "<< 第#{params[:open_time]}回　ランキングに戻る", {controller: :ranking, action: :total, open_time: params[:open_time]}, class: "button" %> 
+<%= link_to "<< @#{@display_user.screen_name} の全戦績リストへ戻る", {controller: :record, action: :user, screen_name: @display_user.screen_name, open_time: nil}, class: "button" %>
+</div>
+<hr>
+<%= render 'rounds', show_delete: false, show_time: true, tweet_user: @display_user.screen_name %>
+
+<% end %>

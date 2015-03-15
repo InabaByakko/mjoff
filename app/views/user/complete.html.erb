@@ -7,6 +7,12 @@
 <h1 class="gradient01">エントリーありがとうございます。</h1>
 <div>
   <img src="<%= @user.icon_src %>">
+  <% if @is_joined_before %>
+    <%= @user.username %>さん (<a href="https://twitter.com/<%= @user.screen_name %>" target="_brank">@<%= @user.screen_name %></a>) 、引き続きのエントリーありがとうございます。<br>
+    前回までの戦績については、<%= link_to "こちら", :controller => "record" , :action => "user", :screen_name => @user.screen_name %>からご覧いただけます。
+  <%else%>
 <%= @user.username %>さん (<a href="https://twitter.com/<%= @user.screen_name %>" target="_brank">@<%= @user.screen_name %></a>) さんのエントリーが完了しました。
+<%end%>
 </div>
+<div>前回 <%= Application.open_time - 1 %>回 のランキングは<%= link_to "こちらから確認できます。", {controller: :ranking, action: :total, open_time: Application.open_time - 1} %></div>
 <div><%= link_to "エントリー画面へ戻る", :action => "entry" %></div>

@@ -20,7 +20,7 @@ class RoundController < ApplicationController
 		end
 		
 		# 直近の指定した回数分の半荘IDを取得
-		round_id_list = UserRoundResults.get_round_id_list(Application.open_time, Application.show_rounds)
+		round_id_list = UserRoundResults.get_round_id_list(Application.open_time, Application.show_rounds).pluck(:round_id)
 		
 		# 半荘結果取得
 		@rounds = []
@@ -28,9 +28,6 @@ class RoundController < ApplicationController
 			@rounds.push( UserRoundResults.where(:open_time => Application.open_time).
 			where(:round_id => rid).order("seat ASC").to_a)
 		end
-	end
-	
-	def show
 	end
 	
 	def new		
@@ -103,8 +100,4 @@ class RoundController < ApplicationController
 		redirect_to :action => "index"
 	end
 	
-	def error(message)
-		@has_error = true
-		@error_mes = message
-	end
 end

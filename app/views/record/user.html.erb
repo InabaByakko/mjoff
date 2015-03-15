@@ -1,0 +1,7 @@
+<% unless @has_error %>
+<h2 class="gradient01"><%= image_tag @display_user.icon_src  %> <%= @display_user.username  %><span style="font-size: 0.5em;">(@<%= @display_user.screen_name %>)</span>さんの戦績 </h2>
+<div>これまで開催されたすべての麻雀オフの戦績を表示しています。</div> <%= @error_mes %>
+<hr>
+<%= render 'rounds', show_delete: false, show_time: true, tweet_user: @display_user.screen_name %>
+<% if Application.is_open %>現在開催中の結果は表示されていません。<% end %>
+<% end %>

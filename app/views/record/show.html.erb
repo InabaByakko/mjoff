@@ -1,0 +1,24 @@
+<%#
+# To change this license header, choose License Headers in Project Properties.
+# To change this template file, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<% unless @has_error %>
+<h1 class="gradient01">第<%= @rounds[0][:open_time] %>回 <%= @rounds[0][:round_id] %>半荘目の結果</h1>
+<%= render "detail", users: @users, rounds: @rounds, input: false %>
+<% unless params[:tweet_user].nil? %><div>「ツイート」ボタンで、今回の結果をTwitterにつぶやくことができます。</div><% end %>
+<% if Application.is_open == true and params[:open_time] == Application.open_time %>
+<%= link_to "<< 開催中のゲームへ戻る", {controller: :round, action: :index}, class: :button %>
+<% elsif !params[:tweet_user].nil? %>
+<%= link_to "<< @#{params[:tweet_user]}の戦績一覧に戻る", {controller: :record, action: :user, screen_name: params[:tweet_user]}, class: :button %>
+<% end %>
+
+ <script src="/javascripts/twtrwids.js"></script>
+ <script type="text/javascript">
+   $(window).unload(function(){
+     elm = document.getElementById('twitter-wjs');
+     document.removeChild(elm);
+   });
+ </script>
+<% end %>

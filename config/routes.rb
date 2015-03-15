@@ -25,10 +25,21 @@ Mjoff::Application.routes.draw do
 	
 	get 'admin/enter' => 'admin#userlist'
 	post 'admin/enter' => 'admin#enter'
+	
+	get 'record/:screen_name' => 'record#user'
+	get 'record/:screen_name/:open_time' => 'record#user'
+	get "record/detail/:open_time/:round_id" => "record#show"
 
+	get 'ranking' => "ranking#index"
+	get 'ranking/:open_time' => redirect("/ranking/total/%{open_time}")
+	get 'ranking/total/:open_time' => 'ranking#total'
+	
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-	resources :round
+	get "round" => "round#index"
+	get "round/new" => "round#new"
+	post "round" => "round#create"
+	delete "round/:id" => "round#destroy"
 
   # Example resource route with options:
   #   resources :products do

@@ -1,0 +1,42 @@
+<% show_delete = true if show_delete.nil? %>
+<% show_time = false if show_time.nil? %>
+<table border="1">
+  <tr>
+    <th></th>
+    <th>東</th>
+    <th>南</th>
+    <th>西</th>
+    <th>北</th>
+    <% if show_delete %><th></th><% end %>
+  </tr>
+  <% @rounds.each do |round| %>
+  <tr>
+    <td>
+      <% tweet_user = "" if tweet_user.nil? %>
+      <% r_title = (show_time ? "第#{round[0].open_time}回 #{round[0].round_id}半荘目" : "#{round[0].round_id}半荘目") %>
+      <% if tweet_user.empty? %>
+<%= link_to r_title, controller: :record, action: :show, open_time: round[0].open_time, round_id: round[0].round_id %>
+      <% else %>
+      <%= link_to r_title, controller: :record, action: :show, open_time: round[0].open_time, round_id: round[0].round_id, tweet_user: tweet_user %>
+      <% end %>
+    </td>
+    <% round.each do |r| %>
+    <% user = @users.find{|u| u.id == r.user_id } %>
+    <td class="player_container">
+      <div class="player_name"><img src="<%= user.icon_src %>" alt="<%= user.screen_name %>"><strong><%= user.username %></strong> </div>
+      <div class="player_score"><%= r.score %>点 <span style="font-size: small;color:<%  if r.plus_minus > 0 %>blue<% elsif r.plus_minus < 0 %>red<%else%>black<%end%> ">(<%= r.plus_minus %>)</span> </div>
+      <div class="player_rank"><%= image_tag "rank#{r.rank}.png" %></div>
+      <!-- div class="player_tweet">
+<% if !r.tweeted %>
+        <%= link_to image_tag("tweet.png"), {:controller => "tweet", :action => "confirm", :id => r.id,}, :class => "button icon" %>
+<% else %>
+        <%= link_to image_tag("tweet_gray.png"), "javascript:void(0);", :class => "button icon disabled" %>
+<% end %> </div-->
+    </td>
+    <% end %>
+    <% if show_delete %>
+    <td><%= link_to "削除", {:action => "destroy", :id => round[0].round_id}, :method => :delete, :class => "button b_thin", data: { confirm: '本当に削除してよろしいですか？' }, :style => "width: 3em;" %></td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
