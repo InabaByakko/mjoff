@@ -1,8 +1,9 @@
-<%#
+﻿<%#
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 %>
-
+<% unless @has_error %>
 <div class="top_menu"><%= link_to "対局結果を登録", {:action => "new"}, {:class => "button"} %> </div>
 <%= render 'rounds' %>
+<% end %>
