@@ -12,7 +12,7 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		return array
 	end
 	
-	test "set_ranks" do
+	test "順位付け" do
 		@rounds = get_test_data
 		
 		UserRoundResults.set_ranks(@rounds)
@@ -23,20 +23,20 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		assert_equal 3, @rounds[3].rank
 	end
 	
-	test "payrankscore" do
+	test "ウマ支払い" do
 		@rounds = get_test_data
 		
 		UserRoundResults.set_ranks(@rounds)
 		UserRoundResults.pay_rank_score(@rounds)
 		
 		assert_equal 9000, @rounds[0].score
-		assert_equal 30000, @rounds[1].score
+		assert_equal 31000, @rounds[1].score
 		assert_equal 41000, @rounds[2].score
-		assert_equal 20000, @rounds[3].score
+		assert_equal 19000, @rounds[3].score
 	end
 	
 
-	test "set_plus_minus" do
+	test "プラマイ計算" do
 		@rounds = get_test_data
 		
 		UserRoundResults.set_ranks(@rounds)
@@ -47,6 +47,22 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		assert_equal 0, @rounds[1].plus_minus
 		assert_equal 31, @rounds[2].plus_minus
 		assert_equal -10, @rounds[3].plus_minus
+	end
+	
+	###############################################
+	## 同点の場合
+	###############################################
+	
+	test "順位（1位と2位が同じ）" do
+		@rounds = get_test_data(4)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 4, @rounds[0].rank
+		assert_equal 1, @rounds[1].rank
+		assert_equal 1, @rounds[2].rank
+		assert_equal 3, @rounds[3].rank
 	end
 	
 	# 想定結果：1位と2位がそれぞれ馬を折半し7500点ずつ加算
@@ -60,5 +76,131 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		assert_equal 39500, @rounds[1].score
 		assert_equal 39500, @rounds[2].score
 		assert_equal 16000, @rounds[3].score
+	end
+	
+	test "順位（3位と4位が同じ）" do
+		@rounds = get_test_data(8)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 3, @rounds[0].rank
+		assert_equal 3, @rounds[1].rank
+		assert_equal 2, @rounds[2].rank
+		assert_equal 1, @rounds[3].rank
+	end
+	
+	# 想定結果：3位と4位がそれぞれ馬を折半し7500点ずつ支払い
+	test "同着ウマ支払い（3位と4位が同じ）" do
+		@rounds = get_test_data(8)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 1500, @rounds[0].score
+		assert_equal 1500, @rounds[1].score
+		assert_equal 41000, @rounds[2].score
+		assert_equal 56000, @rounds[3].score
+	end
+	
+	test "順位（2位と3位が同じ）" do
+		@rounds = get_test_data(12)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 1, @rounds[0].rank
+		assert_equal 2, @rounds[1].rank
+		assert_equal 2, @rounds[2].rank
+		assert_equal 4, @rounds[3].rank
+	end
+	
+	# 想定結果：２／３位の間に授受は発生しない
+	test "同着ウマ支払い（2位と3位が同じ）" do
+		@rounds = get_test_data(12)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 66000, @rounds[0].score
+		assert_equal 1500, @rounds[1].score
+		assert_equal 41000, @rounds[2].score
+		assert_equal -6000, @rounds[3].score
+	end
+	
+	test "順位（1位と2位と3位が同じ）" do
+		@rounds = get_test_data(16)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 4, @rounds[0].rank
+		assert_equal 1, @rounds[1].rank
+		assert_equal 1, @rounds[2].rank
+		assert_equal 1, @rounds[3].rank
+	end
+	
+	# 想定結果：１／２／３位それぞれ3300点ずつ加算（端数切り捨て）（仮）
+	test "同着ウマ支払い（1位と2位と3位が同じ）" do
+		@rounds = get_test_data(16)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		# 4位は-5900かもしれない？要確認
+		assert_equal -6000, @rounds[0].score
+		assert_equal 35300, @rounds[1].score
+		assert_equal 35300, @rounds[2].score
+		assert_equal 35300, @rounds[3].score
+	end
+	
+	test "順位（2位と3位と4位が同じ）" do
+		@rounds = get_test_data(20)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 1, @rounds[0].rank
+		assert_equal 2, @rounds[1].rank
+		assert_equal 2, @rounds[2].rank
+		assert_equal 2, @rounds[3].rank
+	end
+	
+	# 想定結果：２／３／4位それぞれ3300点ずつ支払い（端数切り捨て）（仮）
+	test "同着ウマ支払い（2位と3位と4位が同じ）" do
+		@rounds = get_test_data(20)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 82900, @rounds[0].score
+		assert_equal 5700, @rounds[1].score
+		assert_equal 5700, @rounds[2].score
+		assert_equal 5700, @rounds[3].score
+	end
+	
+	test "順位（全員同じ）" do
+		@rounds = get_test_data(24)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 1, @rounds[0].rank
+		assert_equal 1, @rounds[1].rank
+		assert_equal 1, @rounds[2].rank
+		assert_equal 1, @rounds[3].rank
+	end
+	
+	# 想定結果：なにもうごかない
+	test "同着ウマ支払い（全員同じ）" do
+		@rounds = get_test_data(24)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 25000, @rounds[0].score
+		assert_equal 25000, @rounds[1].score
+		assert_equal 25000, @rounds[2].score
+		assert_equal 25000, @rounds[3].score
 	end
 end
