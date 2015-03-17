@@ -86,8 +86,8 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		UserRoundResults.pay_rank_score(@rounds)
 		
 		assert_equal -25, @rounds[0].plus_minus
-		assert_equal 19, @rounds[1].plus_minus
-		assert_equal 10, @rounds[2].plus_minus
+		assert_equal 19.5, @rounds[1].plus_minus
+		assert_equal 19.5, @rounds[2].plus_minus
 		assert_equal -14, @rounds[3].plus_minus
 	end
 	
@@ -122,10 +122,10 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		UserRoundResults.set_ranks(@rounds)
 		UserRoundResults.pay_rank_score(@rounds)
 		
-		assert_equal -29, @rounds[0].plus_minus
-		assert_equal -29, @rounds[1].plus_minus
+		assert_equal -28.5, @rounds[0].plus_minus
+		assert_equal -28.5, @rounds[1].plus_minus
 		assert_equal 11, @rounds[2].plus_minus
-		assert_equal 47, @rounds[3].plus_minus
+		assert_equal 46, @rounds[3].plus_minus
 	end
 	
 	test "順位（2位と3位が同じ）" do
@@ -197,6 +197,7 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		UserRoundResults.set_ranks(@rounds)
 		UserRoundResults.pay_rank_score(@rounds)
 		
+		# 35.9かもしれない
 		assert_equal -36, @rounds[0].plus_minus
 		assert_equal 12, @rounds[1].plus_minus
 		assert_equal 12, @rounds[2].plus_minus
@@ -234,10 +235,10 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		UserRoundResults.set_ranks(@rounds)
 		UserRoundResults.pay_rank_score(@rounds)
 		
-		assert_equal 72, @rounds[0].plus_minus
-		assert_equal -24, @rounds[1].plus_minus
-		assert_equal -24, @rounds[2].plus_minus
-		assert_equal -24, @rounds[3].plus_minus
+		assert_equal 72.9, @rounds[0].plus_minus
+		assert_equal -24.3, @rounds[1].plus_minus
+		assert_equal -24.3, @rounds[2].plus_minus
+		assert_equal -24.3, @rounds[3].plus_minus
 	end
 	
 	test "順位（全員同じ）" do

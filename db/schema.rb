@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328032618) do
+ActiveRecord::Schema.define(version: 20150317161716) do
 
   create_table "meetings", primary_key: "open_time", force: true do |t|
     t.time     "enter_time"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20140328032618) do
     t.integer  "seat",                   null: false
     t.integer  "rank",                   null: false
     t.integer  "score",                  null: false
-    t.integer  "plus_minus",             null: false
+    t.float    "plus_minus",             null: false
     t.integer  "yakuman",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
