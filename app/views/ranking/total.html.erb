@@ -16,7 +16,7 @@
       </div>
     </td>
     <td><%= user_score[1] %></td>
-    <td><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= request.url.gsub(/\?.*$/, "") %>" data-text="第<%= params[:open_time] %>回麻雀オフの @<%= user.screen_name %> の総合成績は <% if user_score[1] > 0 %>+<% end %><%= user_score[1] %> で <%= rank + 1 %>位でした。 " data-lang="ja" data-size="large" data-count="none" data-hashtags="marjong_off">ツイート</a>
+    <td><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= request.url.gsub(/\?.*$/, "") %>" data-text="第<%= params[:open_time] %>回麻雀オフの @<%= user.screen_name %> の総合成績は <% if user_score[1] > 0 %>+<% end %><%= user_score[1] %> で <%= rank + 1 %>位でした。 " data-lang="ja" data-size="large" data-count="none" data-hashtags="mahjong_off">ツイート</a>
 </td>
   </tr>
   <% end %>
