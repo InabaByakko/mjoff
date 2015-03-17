@@ -44,9 +44,9 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		UserRoundResults.set_plus_minus(@rounds)
 		
 		assert_equal -21, @rounds[0].plus_minus
-		assert_equal 0, @rounds[1].plus_minus
+		assert_equal 1, @rounds[1].plus_minus
 		assert_equal 31, @rounds[2].plus_minus
-		assert_equal -10, @rounds[3].plus_minus
+		assert_equal -11, @rounds[3].plus_minus
 	end
 	
 	###############################################
@@ -78,6 +78,19 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		assert_equal 16000, @rounds[3].score
 	end
 	
+	# 端数は切り捨て
+	test "プラマイ（1位と2位が同じ）" do
+		@rounds = get_test_data(4)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal -25, @rounds[0].plus_minus
+		assert_equal 19, @rounds[1].plus_minus
+		assert_equal 10, @rounds[2].plus_minus
+		assert_equal -14, @rounds[3].plus_minus
+	end
+	
 	test "順位（3位と4位が同じ）" do
 		@rounds = get_test_data(8)
 		
@@ -103,6 +116,18 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		assert_equal 56000, @rounds[3].score
 	end
 	
+	test "プラマイ（3位と4位が同じ）" do
+		@rounds = get_test_data(8)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal -29, @rounds[0].plus_minus
+		assert_equal -29, @rounds[1].plus_minus
+		assert_equal 11, @rounds[2].plus_minus
+		assert_equal 47, @rounds[3].plus_minus
+	end
+	
 	test "順位（2位と3位が同じ）" do
 		@rounds = get_test_data(12)
 		
@@ -123,9 +148,21 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		UserRoundResults.pay_rank_score(@rounds)
 		
 		assert_equal 66000, @rounds[0].score
-		assert_equal 1500, @rounds[1].score
-		assert_equal 41000, @rounds[2].score
+		assert_equal 20000, @rounds[1].score
+		assert_equal 20000, @rounds[2].score
 		assert_equal -6000, @rounds[3].score
+	end
+	
+	test "プラマイ（2位と3位が同じ）" do
+		@rounds = get_test_data(12)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 56, @rounds[0].plus_minus
+		assert_equal -10, @rounds[1].plus_minus
+		assert_equal -10, @rounds[2].plus_minus
+		assert_equal -36, @rounds[3].plus_minus
 	end
 	
 	test "順位（1位と2位と3位が同じ）" do
@@ -154,6 +191,18 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		assert_equal 35300, @rounds[3].score
 	end
 	
+	test "プラマイ（1位と2位と3位が同じ）" do
+		@rounds = get_test_data(16)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal -36, @rounds[0].plus_minus
+		assert_equal 12, @rounds[1].plus_minus
+		assert_equal 12, @rounds[2].plus_minus
+		assert_equal 12, @rounds[3].plus_minus
+	end
+	
 	test "順位（2位と3位と4位が同じ）" do
 		@rounds = get_test_data(20)
 		
@@ -179,6 +228,18 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		assert_equal 5700, @rounds[3].score
 	end
 	
+	test "プラマイ（2位と3位と4位が同じ）" do
+		@rounds = get_test_data(20)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 72, @rounds[0].plus_minus
+		assert_equal -24, @rounds[1].plus_minus
+		assert_equal -24, @rounds[2].plus_minus
+		assert_equal -24, @rounds[3].plus_minus
+	end
+	
 	test "順位（全員同じ）" do
 		@rounds = get_test_data(24)
 		
@@ -202,5 +263,17 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		assert_equal 25000, @rounds[1].score
 		assert_equal 25000, @rounds[2].score
 		assert_equal 25000, @rounds[3].score
+	end
+	
+	test "プラマイ（全員同じ）" do
+		@rounds = get_test_data(24)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 0, @rounds[0].plus_minus
+		assert_equal 0, @rounds[1].plus_minus
+		assert_equal 0, @rounds[2].plus_minus
+		assert_equal 0, @rounds[3].plus_minus
 	end
 end
