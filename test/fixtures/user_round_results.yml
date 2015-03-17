@@ -52,7 +52,7 @@ four:
 samerank1_1:
     user_id: 1
     open_time: 1
-    round_id: 1
+    round_id: 2
     seat: 0
     score: 15000
     yakuman: 0
@@ -62,7 +62,7 @@ samerank1_1:
 samerank1_2:
     user_id: 2
     open_time: 1
-    round_id: 1
+    round_id: 2
     seat: 0
     score: 32000
     yakuman: 0
@@ -72,7 +72,7 @@ samerank1_2:
 samerank1_3:
     user_id: 3
     open_time: 1
-    round_id: 1
+    round_id: 2
     seat: 0
     score: 32000
     yakuman: 0
@@ -82,7 +82,89 @@ samerank1_3:
 samerank1_4:
     user_id: 4
     open_time: 1
-    round_id: 1
+    round_id: 2
+    seat: 0
+    score: 21000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
+
+# 3/4位が同着
+samerank2_1:
+    user_id: 1
+    open_time: 1
+    round_id: 3
+    seat: 0
+    score: 9000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
+    
+samerank2_2:
+    user_id: 2
+    open_time: 1
+    round_id: 3
+    seat: 0
+    score: 9000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
+    
+samerank2_3:
+    user_id: 3
+    open_time: 1
+    round_id: 3
+    seat: 0
+    score: 36000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
+    
+samerank2_4:
+    user_id: 4
+    open_time: 1
+    round_id: 3
+    seat: 0
+    score: 46000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
+
+# 2/3位が同着
+samerank3_1:
+    user_id: 1
+    open_time: 1
+    round_id: 4
+    seat: 0
+    score: 15000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
+    
+samerank3_2:
+    user_id: 2
+    open_time: 1
+    round_id: 4
+    seat: 0
+    score: 32000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
+    
+samerank3_3:
+    user_id: 3
+    open_time: 1
+    round_id: 4
+    seat: 0
+    score: 32000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
+    
+samerank3_4:
+    user_id: 4
+    open_time: 1
+    round_id: 4
     seat: 0
     score: 21000
     yakuman: 0
