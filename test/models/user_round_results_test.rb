@@ -267,7 +267,7 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 	end
 	
 	test "プラマイ（全員同じ）" do
-		@rounds = get_test_data(24)
+		@rounds = get_test_data(28)
 		
 		UserRoundResults.set_ranks(@rounds)
 		UserRoundResults.pay_rank_score(@rounds)
@@ -276,5 +276,42 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		assert_equal 0, @rounds[1].plus_minus
 		assert_equal 0, @rounds[2].plus_minus
 		assert_equal 0, @rounds[3].plus_minus
+	end
+	
+	test "順位（1/2位、3/4位同着）" do
+		@rounds = get_test_data(28)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 1, @rounds[0].rank
+		assert_equal 3, @rounds[1].rank
+		assert_equal 3, @rounds[2].rank
+		assert_equal 1, @rounds[3].rank
+	end
+	
+	# 想定結果：3位と4位がそれぞれ馬を折半し7500点ずつ支払い、1位と2位がそれぞれ馬を折半し7500点ずつ加算
+	test "同着ウマ支払い（1/2位、3/4位同着）" do
+		@rounds = get_test_data(28)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 37500, @rounds[0].score
+		assert_equal 12500, @rounds[1].score
+		assert_equal 12500, @rounds[2].score
+		assert_equal 37500, @rounds[3].score
+	end
+	
+	test "プラマイ（1/2位、3/4位同着）" do
+		@rounds = get_test_data(24)
+		
+		UserRoundResults.set_ranks(@rounds)
+		UserRoundResults.pay_rank_score(@rounds)
+		
+		assert_equal 17.5, @rounds[0].plus_minus
+		assert_equal -17.5, @rounds[1].plus_minus
+		assert_equal -17.5, @rounds[2].plus_minus
+		assert_equal 17.5, @rounds[3].plus_minus
 	end
 end

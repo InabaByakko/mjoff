@@ -293,3 +293,44 @@ samerank6_4:
     yakuman: 0
     rank: 0
     plus_minus: 0
+    
+# 1/2位、3/4位同着
+samerank7_1:
+    user_id: 1
+    open_time: 1
+    round_id: 8
+    seat: 0
+    score: 30000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
+    
+samerank7_2:
+    user_id: 2
+    open_time: 1
+    round_id: 8
+    seat: 0
+    score: 20000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
+    
+samerank7_3:
+    user_id: 3
+    open_time: 1
+    round_id: 8
+    seat: 0
+    score: 20000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
+    
+samerank7_4:
+    user_id: 4
+    open_time: 1
+    round_id: 8
+    seat: 0
+    score: 30000
+    yakuman: 0
+    rank: 0
+    plus_minus: 0
