@@ -108,13 +108,13 @@ class UserRoundResults < ActiveRecord::Base
 		same_ranks = sorted_rounds.inject(Hash.new(0)){|h, key| h[key.rank] += 1; h}.map {|k,v| k if v >= 2}.compact
 		same_ranks.each do |rank|
 			# 同じ順位の人数
-			same_count = sorted_rounds.find_all{|r|r.rank == rank}.length
-			# 折半した結果のスコア
+			same_count = sorted_rounds.count{|r|r.rank == rank}
+			# 同順位のウマ授受の合計
 			joined_score = 0
 			for i in 0...same_count
 				joined_score += score_diff[i + (rank-1)]
 			end
-			# 人数で割り、100点以下を切り捨てる
+			# 人数で割り、100点以下を切り捨てそれを加減点とする
 			joined_score = (joined_score / same_count / 100.0).to_i * 100
 			for i in 0...same_count
 				score_diff[i + (rank-1)] = joined_score
@@ -131,15 +131,18 @@ class UserRoundResults < ActiveRecord::Base
 	def self.set_plus_minus(rounds)
 		sorted_rounds = rounds.sort_by {|r| r.rank }
 		# 1位だけ最後にまとめて計算するため避けておく
-		first = sorted_rounds.shift
+		firsts = sorted_rounds.shift(sorted_rounds.count{|r|r.rank == 1})
 		# 2位以下の収支計算
 		sum = 0
 		sorted_rounds.each do |round|
-			round.plus_minus = ((round.score - Application.standard_score) / 1000).round
+			# 小数第一位まで丸める
+			round.plus_minus = ((round.score - Application.standard_score) / 1000.0).round(1)
 			sum += round.plus_minus
 		end
 		# 計算した残りを1位に加算
-		first.plus_minus = sum.abs
+		firsts.each do |r|
+			r.plus_minus = sum.abs / firsts.length
+		end
 	end
 	
 	#####################################################
