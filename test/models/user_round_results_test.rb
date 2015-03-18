@@ -223,7 +223,8 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		UserRoundResults.set_ranks(@rounds)
 		UserRoundResults.pay_rank_score(@rounds)
 		
-		assert_equal 82900, @rounds[0].score
+		# 82900かもしれない
+		assert_equal 83000, @rounds[0].score
 		assert_equal 5700, @rounds[1].score
 		assert_equal 5700, @rounds[2].score
 		assert_equal 5700, @rounds[3].score
@@ -235,6 +236,7 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		UserRoundResults.set_ranks(@rounds)
 		UserRoundResults.pay_rank_score(@rounds)
 		
+		# 73かもしれない
 		assert_equal 72.9, @rounds[0].plus_minus
 		assert_equal -24.3, @rounds[1].plus_minus
 		assert_equal -24.3, @rounds[2].plus_minus

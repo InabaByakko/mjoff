@@ -97,10 +97,33 @@ class UserRoundResults < ActiveRecord::Base
 	# ウマ支払い
 	def self.pay_rank_score(rounds)
 		sorted_rounds = rounds.sort_by {|r| r.rank }
-		sorted_rounds[0].score += Application.fourth_to_first_score
-		sorted_rounds[1].score += Application.third_to_second_score
-		sorted_rounds[2].score -= Application.third_to_second_score
-		sorted_rounds[3].score -= Application.fourth_to_first_score
+		score_diff = [
+			Application.fourth_to_first_score,
+			Application.third_to_second_score,
+			Application.third_to_second_score * -1,
+			Application.fourth_to_first_score * -1
+			]
+		# 同順位のプレイヤーがいる場合、同じ順位同士でウマを折半し合う
+		# 同じ順位を探す　参考；http://kiyotakakubo.hatenablog.com/entry/20110801/1312196444
+		same_ranks = sorted_rounds.inject(Hash.new(0)){|h, key| h[key.rank] += 1; h}.map {|k,v| k if v >= 2}.compact
+		same_ranks.each do |rank|
+			# 同じ順位の人数
+			same_count = sorted_rounds.find_all{|r|r.rank == rank}.length
+			# 折半した結果のスコア
+			joined_score = 0
+			for i in 0...same_count
+				joined_score += score_diff[i + (rank-1)]
+			end
+			# 人数で割り、100点以下を切り捨てる
+			joined_score = (joined_score / same_count / 100.0).to_i * 100
+			for i in 0...same_count
+				score_diff[i + (rank-1)] = joined_score
+			end
+		end
+		# ウマ加減
+		for i in 0..3
+			sorted_rounds[i].score += score_diff[i]
+		end
 	end
 	
 	#####################################################
