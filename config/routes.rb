@@ -21,6 +21,7 @@ Mjoff::Application.routes.draw do
 	get 'user/failed' => 'user#failed'
 	
 	get 'tweet/confirm/:id' => 'tweet#confirm'
+  get 'tweet/:open_time/:round_id' => 'tweet#get_qr'
 	post 'tweet/:id' => 'tweet#update'
 	
 	get 'admin/enter' => 'admin#userlist'

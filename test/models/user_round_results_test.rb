@@ -57,7 +57,6 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		@rounds = get_test_data(4)
 		
 		UserRoundResults.set_ranks(@rounds)
-		UserRoundResults.pay_rank_score(@rounds)
 		
 		assert_equal 4, @rounds[0].rank
 		assert_equal 1, @rounds[1].rank
@@ -84,6 +83,7 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		
 		UserRoundResults.set_ranks(@rounds)
 		UserRoundResults.pay_rank_score(@rounds)
+		UserRoundResults.set_plus_minus(@rounds)
 		
 		assert_equal -25, @rounds[0].plus_minus
 		assert_equal 19.5, @rounds[1].plus_minus
@@ -95,7 +95,6 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		@rounds = get_test_data(8)
 		
 		UserRoundResults.set_ranks(@rounds)
-		UserRoundResults.pay_rank_score(@rounds)
 		
 		assert_equal 3, @rounds[0].rank
 		assert_equal 3, @rounds[1].rank
@@ -121,6 +120,7 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		
 		UserRoundResults.set_ranks(@rounds)
 		UserRoundResults.pay_rank_score(@rounds)
+		UserRoundResults.set_plus_minus(@rounds)
 		
 		assert_equal -28.5, @rounds[0].plus_minus
 		assert_equal -28.5, @rounds[1].plus_minus
@@ -132,7 +132,6 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		@rounds = get_test_data(12)
 		
 		UserRoundResults.set_ranks(@rounds)
-		UserRoundResults.pay_rank_score(@rounds)
 		
 		assert_equal 1, @rounds[0].rank
 		assert_equal 2, @rounds[1].rank
@@ -158,6 +157,7 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		
 		UserRoundResults.set_ranks(@rounds)
 		UserRoundResults.pay_rank_score(@rounds)
+		UserRoundResults.set_plus_minus(@rounds)
 		
 		assert_equal 56, @rounds[0].plus_minus
 		assert_equal -10, @rounds[1].plus_minus
@@ -169,7 +169,6 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		@rounds = get_test_data(16)
 		
 		UserRoundResults.set_ranks(@rounds)
-		UserRoundResults.pay_rank_score(@rounds)
 		
 		assert_equal 4, @rounds[0].rank
 		assert_equal 1, @rounds[1].rank
@@ -196,6 +195,7 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		
 		UserRoundResults.set_ranks(@rounds)
 		UserRoundResults.pay_rank_score(@rounds)
+		UserRoundResults.set_plus_minus(@rounds)
 		
 		# 35.9かもしれない
 		assert_equal -36, @rounds[0].plus_minus
@@ -208,7 +208,6 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		@rounds = get_test_data(20)
 		
 		UserRoundResults.set_ranks(@rounds)
-		UserRoundResults.pay_rank_score(@rounds)
 		
 		assert_equal 1, @rounds[0].rank
 		assert_equal 2, @rounds[1].rank
@@ -235,6 +234,7 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		
 		UserRoundResults.set_ranks(@rounds)
 		UserRoundResults.pay_rank_score(@rounds)
+		UserRoundResults.set_plus_minus(@rounds)
 		
 		# 73かもしれない
 		assert_equal 72.9, @rounds[0].plus_minus
@@ -247,7 +247,6 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		@rounds = get_test_data(24)
 		
 		UserRoundResults.set_ranks(@rounds)
-		UserRoundResults.pay_rank_score(@rounds)
 		
 		assert_equal 1, @rounds[0].rank
 		assert_equal 1, @rounds[1].rank
@@ -269,10 +268,11 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 	end
 	
 	test "プラマイ（全員同じ）" do
-		@rounds = get_test_data(28)
+		@rounds = get_test_data(24)
 		
 		UserRoundResults.set_ranks(@rounds)
 		UserRoundResults.pay_rank_score(@rounds)
+		UserRoundResults.set_plus_minus(@rounds)
 		
 		assert_equal 0, @rounds[0].plus_minus
 		assert_equal 0, @rounds[1].plus_minus
@@ -284,7 +284,6 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 		@rounds = get_test_data(28)
 		
 		UserRoundResults.set_ranks(@rounds)
-		UserRoundResults.pay_rank_score(@rounds)
 		
 		assert_equal 1, @rounds[0].rank
 		assert_equal 3, @rounds[1].rank
@@ -306,10 +305,11 @@ class UserRoundResultsTest < ActiveSupport::TestCase
 	end
 	
 	test "プラマイ（1/2位、3/4位同着）" do
-		@rounds = get_test_data(24)
+		@rounds = get_test_data(28)
 		
 		UserRoundResults.set_ranks(@rounds)
 		UserRoundResults.pay_rank_score(@rounds)
+		UserRoundResults.set_plus_minus(@rounds)
 		
 		assert_equal 17.5, @rounds[0].plus_minus
 		assert_equal -17.5, @rounds[1].plus_minus
