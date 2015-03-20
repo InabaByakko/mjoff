@@ -1,3 +1,5 @@
+<script src="/javascripts/jquery.colorbox-min.js"></script>
+
 <% show_delete = true if show_delete.nil? %>
 <% show_time = false if show_time.nil? %>
 <table border="1">
@@ -26,12 +28,12 @@
       <div class="player_name"><img src="<%= user.icon_src %>" alt="<%= user.screen_name %>"><strong><%= user.username %></strong> </div>
       <div class="player_score"><%= r.score %>点 <span style="font-size: small;color:<%  if r.plus_minus > 0 %>blue<% elsif r.plus_minus < 0 %>red<%else%>black<%end%> ">(<%= r.plus_minus %>)</span> </div>
       <div class="player_rank"><%= image_tag "rank#{r.rank}.png" %></div>
-      <!-- div class="player_tweet">
-<% if !r.tweeted %>
-        <%= link_to image_tag("tweet.png"), {:controller => "tweet", :action => "confirm", :id => r.id,}, :class => "button icon" %>
-<% else %>
-        <%= link_to image_tag("tweet_gray.png"), "javascript:void(0);", :class => "button icon disabled" %>
-<% end %> </div-->
+      <div class="player_tweet">
+<%# if !r.tweeted %>
+        <%= link_to image_tag("tweet.png"), {:controller => "tweet", :action => "get_qr", :open_time => r.open_time, :round_id => r.round_id, :tweet_user => user.id}, :class => "button icon iframe" %>
+<%# else %>
+        <%# = link_to image_tag("tweet_gray.png"), "javascript:void(0);", :class => "button icon disabled" %>
+<%# end %> </div>
     </td>
     <% end %>
     <% if show_delete %>
@@ -40,3 +42,12 @@
   </tr>
   <% end %>
 </table>
+<script>
+$(document).ready(function(){
+    $(".iframe").colorbox({
+        iframe:true,
+        width:"80%",
+        height:"80%"
+    });
+});
+</script>

@@ -1,0 +1,4 @@
+<% unless @has_error %>
+<h4>次のQRコードを読み取り、シェアしてください。</h4>
+<%= image_tag @barcode.to_png_image, :style => "width: 212px; height: 212px; " %>
+<% end %>

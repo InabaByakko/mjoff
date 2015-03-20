@@ -22,6 +22,19 @@ class TweetController < ApplicationController
 			@tweet_message += "　さらに、役満を#{@round.yakuman}回和了！"
 		end
 	end
+
+	def get_qr
+		@round = UserRoundResults.where(:open_time => params[:open_time], :round_id => params[:round_id], :user_id => params[:tweet_user]).first
+		if @round.nil?
+			error "指定された半荘データは存在しません。"
+			return
+		end
+
+		@user = TwitterUser.where(:id => @round.user_id).first
+		
+		url = url_for(:controller => "record", :action => "show", :open_time => params[:open_time], :round_id => params[:round_id], :tweet_user => @user.screen_name)
+		@barcode = QR.new(url)
+	end
 	
 	def update
 		@round = UserRoundResults.where(:id => params[:id]).first
